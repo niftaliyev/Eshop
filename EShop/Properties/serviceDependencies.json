@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "EShopContextConnection"
+    },
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "EShopNewContextConnection"
+    },
+    "mssql3": {
+      "type": "mssql",
+      "connectionId": "EShopContextTestConnection"
+    }
+  }
+}

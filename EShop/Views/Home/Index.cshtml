@@ -1,0 +1,54 @@
+﻿@using Microsoft.AspNetCore.Http;
+
+@model IndexModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (@Context.User.Identity.IsAuthenticated)
+{
+    <div class="text-center">
+        <h6 class="display-4">Welcome @Context.User.Identity.Name</h6>
+    </div>
+}
+
+
+
+
+<div class="container pt-5">
+
+    <div class="row">
+
+        <div class="col-lg-3">
+            <a asp-controller="Home" asp-action="Index" asp-route-id="" class="list-group-item">All</a>
+            @foreach (var item in Model.Categories)
+            {
+
+                <div class="list-group">
+                    <a asp-controller="Home" asp-action="Index" asp-route-id="@item.Id" class="list-group-item @(Model.CategoryId == item.Id ? "active" : "")">@item.Title</a>
+                </div>
+
+
+            }
+        </div>
+
+        <div class="col-lg-9">
+
+
+            <div id="IndexPageCards" class="row">
+
+                <partial name="_CardPartial" model="@Model" />
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    @section Scripts
+{
+        <script>
+        initPagination('@Url.ActionLink("Scroll", "Home", new {id = Model.CategoryId })', @Model.Count);
+        </script>
+    }
