@@ -24,9 +24,9 @@ namespace EShop
                 var roleManager = container.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
                 var configuration = container.ServiceProvider.GetRequiredService<IConfiguration>();
 
-                if (!await roleManager.RoleExistsAsync("Administrator"))
+                if (!await roleManager.RoleExistsAsync("Admin"))
                 {
-                    var result = await roleManager.CreateAsync(new IdentityRole { Name = "Administrator" });
+                    var result = await roleManager.CreateAsync(new IdentityRole { Name = "Admin" });
                     if (!result.Succeeded)
                         throw new Exception(result.Errors.First().Description);
                 }
@@ -40,12 +40,12 @@ namespace EShop
                     user = new AppUser
                     {
                         UserName=adminUsername,
-                        Email = "admin@eshop.az",
+                        Email = "psotthecreator@gmail.com",
                     };
                      var result = await userManager.CreateAsync(user, adminPassword);
 
 
-                     await userManager.AddToRoleAsync(user, "Administrator");
+                     await userManager.AddToRoleAsync(user, "Admin");
 
                 }
             }
