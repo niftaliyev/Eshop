@@ -23,6 +23,7 @@ namespace EShop.Models.Configurations
             builder
                 .Property(x => x.Description)
                 .HasMaxLength(1000);
+
         }
     }
 }

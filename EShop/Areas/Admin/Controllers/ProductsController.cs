@@ -29,7 +29,7 @@ namespace EShop.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var eShopDbContext = _context.Products.Include(p => p.Category);
-            return View(await eShopDbContext.ToListAsync());
+            return View(await eShopDbContext.OrderByDescending(x => x.Id).ToListAsync());
         }
 
         // GET: Admin/Products/Details/5
@@ -63,7 +63,7 @@ namespace EShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ImageUrl,Price,Description,CategoryId")] Product product, IFormFile Image)
+        public async Task<IActionResult> Create([Bind("Id,Title,ImageUrl,Price,Description,CategoryId,IsNew2")] Product product, IFormFile Image)
         {
             var path = await FileUploadHelper.UploadAsync(Image);
             product.ImageUrl = path;

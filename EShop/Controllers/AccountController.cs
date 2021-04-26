@@ -10,7 +10,7 @@ namespace EShop.Controllers
     {
         public IActionResult Login(string ReturnUrl=null)
         {
-            return PartialView("_AdminLoginViewPartial",ReturnUrl);
+            return PartialView("_AdminLoginViewPartial","ddddddd");
         }
     }
 }

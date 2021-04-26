@@ -13,9 +13,15 @@ namespace EShop.Models
         public decimal Price { get; set; }
         public string Description { get; set; }
 
+
+
+
         public Category Category { get; set; }
         public int CategoryId { get; set; }
         public IEnumerable<OrderProduct> OrderProducts { get; set; }
+
+        public bool IsNew2{ get; set; }
+
 
     }
 }
