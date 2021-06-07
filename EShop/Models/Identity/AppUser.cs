@@ -10,6 +10,9 @@ namespace EShop.Models.Identity
     public class AppUser : IdentityUser
     {
         public string Email { get; set; }
+
+        public IEnumerable<Car> Cars { get; set; }
+
     }
 
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EShop.Migrations
 {
     [DbContext(typeof(EShopDbContext))]
-    [Migration("20210425233900_NewInitial2")]
-    partial class NewInitial2
+    [Migration("20210503223337_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,32 @@ namespace EShop.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("EShop.Models.Car", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Marka")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("Car");
+                });
 
             modelBuilder.Entity("EShop.Models.Category", b =>
                 {
@@ -199,7 +225,7 @@ namespace EShop.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsNewTest")
+                    b.Property<bool>("IsNew2")
                         .HasColumnType("bit");
 
                     b.Property<decimal>("Price")
@@ -346,6 +372,13 @@ namespace EShop.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("EShop.Models.Car", b =>
+                {
+                    b.HasOne("EShop.Models.Identity.AppUser", null)
+                        .WithMany("Cars")
+                        .HasForeignKey("AppUserId");
+                });
+
             modelBuilder.Entity("EShop.Models.OrderProduct", b =>
                 {
                     b.HasOne("EShop.Models.Order", "Order")
@@ -430,6 +463,11 @@ namespace EShop.Migrations
             modelBuilder.Entity("EShop.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("EShop.Models.Identity.AppUser", b =>
+                {
+                    b.Navigation("Cars");
                 });
 
             modelBuilder.Entity("EShop.Models.Order", b =>

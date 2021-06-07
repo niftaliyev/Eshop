@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using EShop.Models;
 
 namespace EShop.Models
 {
@@ -30,6 +31,8 @@ namespace EShop.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; }
+        public DbSet<Car> Car { get; set; }
+        public DbSet<PC> PC { get; set; }
     }
 
 
